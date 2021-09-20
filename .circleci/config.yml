@@ -9,6 +9,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
+            docker ps
             docker build -t cicd_app .
       - run:
           name: Push application Docker image
