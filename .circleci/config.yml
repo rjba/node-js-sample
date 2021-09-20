@@ -1,14 +1,16 @@
 version: 2.1
 
 workflows:
-  test-env-vars:
+  my_workflow:
     jobs:
       - build:
           context: CICD_DOCKER # has an env var called MY_ENV_VAR
       - test:
+          context: CICD_DOCKER # has an env var called MY_ENV_VAR
           requires:
             - build
       - push:
+          context: CICD_DOCKER # has an env var called MY_ENV_VAR
           requires:
             - test
 
@@ -34,8 +36,6 @@ jobs:
             docker build -t $DOCKER_USERNAME/cicd_app .
             docker run -i -t $DOCKER_USERNAME/cicd_app curl http://localhost:8080
   push:
-    requires:
-      - test
     machine:
       image: ubuntu-2004:202107-02
     steps:
