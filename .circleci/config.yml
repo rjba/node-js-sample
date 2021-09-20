@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build -t $DOCKER_USERNAME/cicd_app .
+            docker build -t repo_tp_cicd/cicd_app .
       - run:
           name: Push application Docker image
           command: |
