@@ -16,7 +16,9 @@ jobs:
           name: Build application Docker image
           command: |
             docker build -t $DOCKER_USERNAME/cicd_app .
-  tests:
+  test:
+    requires:
+      - build
     machine:
       image: ubuntu-2004:202107-02
     steps:
@@ -27,14 +29,12 @@ jobs:
             docker build -t $DOCKER_USERNAME/cicd_app .
             docker run -i -t $DOCKER_USERNAME/cicd_app curl http://localhost:8080
   push:
+    requires:
+      - test
     machine:
       image: ubuntu-2004:202107-02
     steps:
       - checkout
-      - run:
-          name: Pushing Docker image
-          command: |
-            docker build -t $DOCKER_USERNAME/cicd_app .
       - run:
           name: Push application Docker image
           command: |
