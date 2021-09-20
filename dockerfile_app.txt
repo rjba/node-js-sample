@@ -1,0 +1,5 @@
+# syntax=docker/dockerfile:1
+FROM ubuntu:18.04
+COPY . /CI-CD
+RUN make /CI-CD
+CMD npm start
