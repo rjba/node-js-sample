@@ -34,7 +34,7 @@ jobs:
           name: Testing that the image runs well before pushing
           command: |
             docker build -t $DOCKER_USERNAME/cicd_app .
-            docker run -i -t $DOCKER_USERNAME/cicd_app curl http://localhost:8080
+            docker run -i -t $DOCKER_USERNAME/cicd_app npm start | curl http://localhost:8080
   push:
     machine:
       image: ubuntu-2004:202107-02
