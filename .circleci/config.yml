@@ -1,5 +1,11 @@
 version: 2.1
 
+workflows:
+  test-env-vars:
+    jobs:
+      - build:
+          context: CICD_DOCKER # has an env var called MY_ENV_VAR
+
 jobs:
   build:
     machine:
