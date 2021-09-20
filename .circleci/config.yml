@@ -20,4 +20,4 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
-            docker image push $DOCKER_USERNAME/cicd_app
+            docker image push repo_tp_cicd/cicd_app
