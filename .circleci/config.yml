@@ -5,6 +5,13 @@ workflows:
     jobs:
       - build:
           context: CICD_DOCKER # has an env var called MY_ENV_VAR
+      - test:
+          requires:
+            - build
+      - push:
+          requires:
+            - test
+
 
 jobs:
   build:
@@ -17,8 +24,6 @@ jobs:
           command: |
             docker build -t $DOCKER_USERNAME/cicd_app .
   test:
-    requires:
-      - build
     machine:
       image: ubuntu-2004:202107-02
     steps:
